@@ -1,10 +1,13 @@
+export WANDB_TOKEN="50a4ebc64391a8931933d2d62402f7cb4ee47236"
+
+
 deepspeed --module openrlhf.cli.train_dpo \
    --save_path ./checkpoint/llama3-8b-dpo \
    --save_steps -1 \
    --logging_steps 1 \
    --eval_steps -1 \
    --train_batch_size 256 \
-   --micro_train_batch_size 1 \
+   --micro_train_batch_size 4 \
    --pretrain OpenRLHF/Llama-3-8b-sft-mixture \
    --bf16 \
    --max_epochs 1 \
@@ -18,4 +21,4 @@ deepspeed --module openrlhf.cli.train_dpo \
    --rejected_key rejected \
    --flash_attn \
    --gradient_checkpointing \
-   --use_wandb {wandb_token}
+   --use_wandb ${WANDB_TOKEN}
